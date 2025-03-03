@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>登場予定フィギュア</title>
+</head>
+<body>
+    <h1>登場予定フィギュア</h1>
+    <div id="figures-list"></div>
+
+    <script>
+        fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            const figuresList = document.getElementById('figures-list');
+            data.forEach(figure => {
+                const figureElement = document.createElement('div');
+                figureElement.innerHTML = `
+                    <h2>${figure.title}</h2>
+                    <p>登場日: ${figure.release_date}</p>
+                `;
+                figuresList.appendChild(figureElement);
+            });
+        });
+    </script>
+</body>
+</html>
